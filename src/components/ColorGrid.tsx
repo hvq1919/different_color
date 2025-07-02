@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableWithoutFeedback, StyleSheet, Dimensions, Text } from 'react-native';
+import { View, StyleSheet, Dimensions, Text, TouchableOpacity } from 'react-native';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
@@ -32,7 +32,7 @@ export const ColorGrid: React.FC<Props> = ({
                 {Array.from({ length: totalCells }).map((_, index) => {
                     const color = index === targetIndex ? targetColor : baseColor;
                     return (
-                        <TouchableWithoutFeedback key={index} onPress={() => onPress(index)}>
+                        <TouchableOpacity activeOpacity={0.8} key={index} onPress={() => onPress(index)}>
                             <View
                                 style={[
                                     styles.cell,
@@ -44,7 +44,7 @@ export const ColorGrid: React.FC<Props> = ({
                                     },
                                 ]}
                             />
-                        </TouchableWithoutFeedback>
+                        </TouchableOpacity>
                     );
                 })}
             </View>
@@ -81,6 +81,6 @@ const styles = StyleSheet.create({
         fontSize: 14,
         textAlign: 'center',
         fontStyle: 'italic',
-        maxWidth: 320,
+        maxWidth: SCREEN_WIDTH,
     },
 });

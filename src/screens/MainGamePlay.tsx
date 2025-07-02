@@ -7,13 +7,14 @@ import {
     getTargetColor,
     getGridSizeByLevel,
     getRandomTargetIndex,
-} from './utils';
-import { ColorGrid } from './components/ColorGrid';
-import { HIGH_SCORE_KEY, MAX_DIFFERENCE, START_GRID_SIZE } from './constant';
+} from '../utils';
+import { ColorGrid } from '../components/ColorGrid';
+import { HIGH_SCORE_KEY, MAX_DIFFERENCE, START_GRID_SIZE } from '../constant';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const TOTAL_TIME = 120; // 2 phút
 
-export default function App() {
+export default function MainGamePlay({ navigation }: any) {
     const [level, setLevel] = useState(1);
     const [gridSize, setGridSize] = useState(START_GRID_SIZE);
     const [baseColor, setBaseColor] = useState(getRandomBaseColor());
@@ -148,6 +149,9 @@ export default function App() {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
+                <TouchableOpacity onPress={() => navigation.goBack()}>
+                    <Ionicons name="arrow-back" size={28} color="#3b82f6" />
+                </TouchableOpacity>
                 <Text style={styles.level}>Level {level}</Text>
                 <Animated.Text
                     style={[
@@ -157,10 +161,11 @@ export default function App() {
                 >
                     Điểm: {score}
                 </Animated.Text>
-                <Text style={styles.timer}>
-                    ⏰ {Math.floor(remainingTime / 60)}:{(remainingTime % 60).toString().padStart(2, '0')}
-                </Text>
+
             </View>
+            <Text style={styles.timer}>
+                ⏰ {Math.floor(remainingTime / 60)}:{(remainingTime % 60).toString().padStart(2, '0')}
+            </Text>
             <ColorGrid
                 gridSize={gridSize}
                 baseColor={baseHex}
@@ -183,10 +188,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        width: '90%',
+        width: '95%',
         backgroundColor: '#fff',
-        borderRadius: 16,
-        padding: 16,
+        borderRadius: 8,
+        paddingVertical: 16,
+        paddingHorizontal: 8,
         marginBottom: 18,
         elevation: 3,
         shadowColor: '#000',
@@ -200,14 +206,34 @@ const styles = StyleSheet.create({
         color: '#3b82f6',
     },
     score: {
-        fontSize: 16,
-        fontWeight: '600',
-        color: '#16a34a',
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#fff',
+        backgroundColor: '#16a34a',
+        paddingHorizontal: 15,
+        paddingVertical: 6,
+        borderRadius: 15,
+        overflow: 'hidden',
+        shadowColor: '#16a34a',
+        shadowOpacity: 0.18,
+        shadowRadius: 6,
+        shadowOffset: { width: 0, height: 2 },
+        marginLeft: 8,
     },
     timer: {
-        fontSize: 16,
+        fontSize: 24,
         color: '#ef4444',
-        fontWeight: '600',
+        fontWeight: 'bold',
+        backgroundColor: '#ffe0f0',
+        paddingHorizontal: 18,
+        paddingVertical: 6,
+        borderRadius: 16,
+        marginVertical: 10,
+        alignSelf: 'center',
+        shadowColor: '#ef4444',
+        shadowOpacity: 0.12,
+        shadowRadius: 6,
+        shadowOffset: { width: 0, height: 2 },
     },
     endGameBox: {
         backgroundColor: '#fff',
@@ -243,10 +269,17 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
     },
-     highScore: {
+    highScore: {
         fontSize: 18,
         color: '#f59e42',
         fontWeight: 'bold',
         marginBottom: 16,
+    },
+    backBtn: {
+        padding: 8,
+    },
+    backText: {
+        fontSize: 28,
+        color: '#3b82f6',
     },
 });

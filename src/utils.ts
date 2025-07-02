@@ -28,9 +28,9 @@ export const getTargetColor = (
   );
 };
 
-// Tính grid size theo level (mỗi 10 level tăng 1)
+// Tính grid size theo level (mỗi 5 level tăng 1)
 export const getGridSizeByLevel = (level: number, startSize = 5): number => {
-  return startSize + Math.floor((level - 1) / 10);
+  return startSize + Math.floor((level - 1) / 5);
 };
 
 // Random index target trong grid
