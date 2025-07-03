@@ -54,3 +54,11 @@ export const getRandomString = () => {
   }
   return result;
 }
+
+export const getPlayerId = (roomId: string): string => {
+  if (__DEV__) {
+    return `DEV_${roomId}`;
+  }
+  const DeviceInfo = require('react-native-device-info').default;
+  return DeviceInfo.getUniqueIdSync();
+}
