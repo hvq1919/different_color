@@ -9,7 +9,8 @@ const firebaseConfig = {
   storageBucket: "ai-tinh-mat-hon.firebasestorage.app",
   messagingSenderId: "202766891806",
   appId: "1:202766891806:web:06e0df3900201ff565270f",
-  measurementId: "G-WZH4ZLHTCN"
+  measurementId: "G-WZH4ZLHTCN",
+  databaseURL: "https://ai-tinh-mat-hon-default-rtdb.asia-southeast1.firebasedatabase.app"
 };
 
 const app = initializeApp(firebaseConfig);

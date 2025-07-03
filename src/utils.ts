@@ -1,3 +1,5 @@
+import { CODE_LENGHT } from "./constant";
+
 // Tạo màu ngẫu nhiên với giới hạn độ sáng
 export const getRandomBaseColor = (): { r: number; g: number; b: number } => {
   const r = Math.floor(Math.random() * 200);
@@ -37,3 +39,18 @@ export const getGridSizeByLevel = (level: number, startSize = 5): number => {
 export const getRandomTargetIndex = (gridSize: number): number => {
   return Math.floor(Math.random() * gridSize * gridSize);
 };
+
+const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+export const getRandomString = () => {
+  let result = '';
+  let used = new Set();
+  while (result.length < CODE_LENGHT) {
+    const idx = Math.floor(Math.random() * chars.length);
+    const char = chars[idx];
+    if (!used.has(char)) {
+      result += char;
+      used.add(char);
+    }
+  }
+  return result;
+}

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { db } from '../firebase/firebaseConfig';
-import { ref, push, set } from 'firebase/database';
+import { ref, set } from 'firebase/database';
+import { getPlayerId, getRandomString } from '../utils';
 
 export default function CreateRoomScreen({ navigation }: any) {
   const [name, setName] = useState('');
@@ -11,9 +12,10 @@ export default function CreateRoomScreen({ navigation }: any) {
       Alert.alert('Vui lòng nhập tên');
       return;
     }
-    const roomRef = push(ref(db, 'rooms'));
-    const roomId = roomRef.key;
-    const playerId = Date.now().toString();
+    const roomId = getRandomString();
+    const roomRef = ref(db, 'rooms/' + roomId);
+
+    const playerId = await getPlayerId(roomId);
     await set(roomRef, {
       status: 'waiting',
       players: {

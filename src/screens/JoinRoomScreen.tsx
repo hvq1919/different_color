@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { db } from '../firebase/firebaseConfig';
 import { ref, get, update } from 'firebase/database';
+import { getPlayerId } from '../utils';
 
 export default function JoinRoomScreen({ navigation }: any) {
   const [roomId, setRoomId] = useState('');
@@ -18,7 +19,7 @@ export default function JoinRoomScreen({ navigation }: any) {
       Alert.alert('Phòng không tồn tại!');
       return;
     }
-    const playerId = Date.now().toString();
+    const playerId = await getPlayerId(roomId);
     await update(ref(db, `rooms/${roomId}/players/${playerId}`), {
       name,
       score: 0,
