@@ -14,18 +14,24 @@ export default function HomeScreen({ navigation }: any) {
 
   return (
     <View style={styles.container}>
-    <Text style={styles.highScore}>🏆 Điểm cao nhất: {highScore}</Text>
-    <Text style={styles.title}>🎨 Different Color Game</Text>
-    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Game')}>
-      <Text style={styles.buttonText}>Chơi ngay</Text>
-    </TouchableOpacity>
-    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('HighScore')}>
-      <Text style={styles.buttonText}>Điểm cao</Text>
-    </TouchableOpacity>
-    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Help')}>
-      <Text style={styles.buttonText}>Hướng dẫn</Text>
-    </TouchableOpacity>
-  </View>
+      <Text style={styles.highScore}>🏆 Điểm cao nhất: {highScore}</Text>
+      <Text style={styles.title}>🎨 Different Color Game</Text>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Game')}>
+        <Text style={styles.buttonText}>Chơi ngay</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('HighScore')}>
+        <Text style={styles.buttonText}>Điểm cao</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Help')}>
+        <Text style={styles.buttonText}>Hướng dẫn</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.buttonOnline} onPress={() => navigation.navigate('CreateRoom')}>
+        <Text style={styles.buttonText}>Tạo phòng đấu online</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.buttonOnline} onPress={() => navigation.navigate('JoinRoom')}>
+        <Text style={styles.buttonText}>Vào phòng đấu online</Text>
+      </TouchableOpacity>
+    </View>
   );
 }
 
@@ -59,6 +65,14 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: '#3b82f6',
+    paddingVertical: 14,
+    paddingHorizontal: 40,
+    borderRadius: 12,
+    marginTop: 18,
+    minWidth: 180,
+  },
+  buttonOnline: {
+    backgroundColor: '#16a34a',
     paddingVertical: 14,
     paddingHorizontal: 40,
     borderRadius: 12,
